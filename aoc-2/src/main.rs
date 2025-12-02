@@ -1,6 +1,6 @@
 mod aoc;
 
-use aoc::{aoc_2_1, aoc_2_2};
+use aoc::{aoc_2_1, aoc_2_2_2};
 use common::read_stdin_until_eof;
 use std::env;
 
@@ -14,7 +14,7 @@ fn main() {
             part = 1;
         } else {
             panic!(
-                "error: aoc-1: unknown --part argument, must be 1 or 2: {}",
+                "error: aoc-2: unknown --part argument, must be 1 or 2: {}",
                 args[1]
             );
         }
@@ -25,7 +25,7 @@ fn main() {
             if part == 1 {
                 println!("aoc-2-1 answer: {}", aoc_2_1(&contents));
             } else if part == 2 {
-                println!("aoc-2-2 answer: {}", aoc_2_2(&contents));
+                println!("aoc-2-2 answer: {}", aoc_2_2_2(&contents));
             }
         }
         Err(e) => panic!("error: aoc-1: {}", e),

@@ -1,3 +1,5 @@
+use rayon::prelude::*;
+
 pub fn aoc_2_1(contents: &String) -> i64 {
     let ranges = parse_contents(contents);
     let mut sum = 0;
@@ -12,6 +14,7 @@ pub fn aoc_2_1(contents: &String) -> i64 {
     sum
 }
 
+#[allow(dead_code)]
 pub fn aoc_2_2(contents: &String) -> i64 {
     let ranges = parse_contents(contents);
     let mut sum = 0;
@@ -23,6 +26,56 @@ pub fn aoc_2_2(contents: &String) -> i64 {
             }
         }
     }
+    sum
+}
+
+pub fn aoc_2_2_2(contents: &String) -> i64 {
+    let ranges = parse_contents(contents);
+    let sum = ranges
+        .par_iter()
+        .map(|range| {
+            let (begin, end) = range;
+            let mut sum = 0;
+            for id in *begin..*end + 1 {
+                if id == 0 {
+                    continue;
+                } else if id < 0 {
+                    sum += id;
+                    continue;
+                }
+                let digits = 1 + id.ilog10();
+                if digits == 1 {
+                    continue;
+                }
+                let mut good = true;
+                for pattern_length in 1..(digits / 2) + 1 {
+                    if digits % pattern_length != 0 {
+                        continue;
+                    }
+                    let cutoff = 10i64.checked_pow(pattern_length).expect("invalid digits");
+                    let initial = id % cutoff;
+                    let mut leftover = id / cutoff;
+                    let mut loop_finished = true;
+                    for _i in 1..digits / pattern_length {
+                        if leftover % cutoff != initial {
+                            loop_finished = false;
+                            break;
+                        }
+                        leftover /= cutoff;
+                    }
+                    if loop_finished {
+                        good = false;
+                        break;
+                    }
+                }
+                if !good {
+                    sum += id;
+                    continue;
+                }
+            }
+            return sum;
+        })
+        .sum();
     sum
 }
 
@@ -91,14 +144,15 @@ fn invalid_id_deux(id: i64) -> bool {
 }
 
 fn segment_number(num: i64, digits: u32) -> Vec<i64> {
-    let cutoff = 10i64.checked_pow(digits).expect("invalid digits");
     let mut result: Vec<i64> = Vec::new();
     let mut leftover = num;
+    let cutoff = 10i64.checked_pow(digits).expect("invalid digits");
     while leftover >= cutoff {
-        result.insert(0, leftover % cutoff);
+        result.push(leftover % cutoff);
         leftover = leftover / cutoff;
     }
     result.push(leftover);
+    result.reverse();
     result
 }
 
