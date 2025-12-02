@@ -16,7 +16,11 @@ fn parse_lines(lines: &Vec<String>) -> Vec<i32> {
         } else if line.len() <= 1 {
             continue;
         }
-        let sign = if line.chars().nth(0).unwrap() == 'L' { -1 } else { 1 };
+        let sign = if line.chars().nth(0).unwrap() == 'L' {
+            -1
+        } else {
+            1
+        };
         match line[1..].parse::<i32>() {
             Ok(num) => results.push(num * sign),
             Err(_) => continue,
@@ -73,12 +77,13 @@ L99
 R14
 L82
         "#;
-        let lines = test_data.lines()
+        let lines = test_data
+            .lines()
             .map(|s| s.to_string())
             .collect::<Vec<String>>();
         let result = parse_lines(&lines);
         assert_eq!(10, result.len());
-        assert_eq!(vec![-68,-30,48,-5,60,-55,-1,-99,14,-82], result);
+        assert_eq!(vec![-68, -30, 48, -5, 60, -55, -1, -99, 14, -82], result);
     }
 
     #[test]
@@ -95,7 +100,8 @@ L99
 R14
 L82
         "#;
-        let lines = test_data.lines()
+        let lines = test_data
+            .lines()
             .map(|s| s.to_string())
             .collect::<Vec<String>>();
         let parsed_lines = parse_lines(&lines);
@@ -117,7 +123,8 @@ L99
 R14
 L82
         "#;
-        let lines = test_data.lines()
+        let lines = test_data
+            .lines()
             .map(|s| s.to_string())
             .collect::<Vec<String>>();
         let parsed_lines = parse_lines(&lines);

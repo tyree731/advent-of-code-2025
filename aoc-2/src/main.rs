@@ -1,7 +1,7 @@
 mod aoc;
-use aoc::{aoc_1_1, aoc_1_2};
 
-use common::read_stdin_lines_until_eof;
+use aoc::{aoc_2_1, aoc_2_2};
+use common::read_stdin_until_eof;
 use std::env;
 
 fn main() {
@@ -19,13 +19,13 @@ fn main() {
             );
         }
     }
-    let result = read_stdin_lines_until_eof();
+    let result = read_stdin_until_eof();
     match result {
-        Ok(lines) => {
+        Ok(contents) => {
             if part == 1 {
-                println!("aoc-1-1 answer: {}", aoc_1_1(&lines))
+                println!("aoc-2-1 answer: {}", aoc_2_1(&contents));
             } else if part == 2 {
-                println!("aoc-1-2 answer: {}", aoc_1_2(&lines))
+                println!("aoc-2-2 answer: {}", aoc_2_2(&contents));
             }
         }
         Err(e) => panic!("error: aoc-1: {}", e),
