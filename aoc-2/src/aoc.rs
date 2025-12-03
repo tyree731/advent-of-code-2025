@@ -52,7 +52,7 @@ pub fn aoc_2_2_2(contents: &String) -> i64 {
                     if digits % pattern_length != 0 {
                         continue;
                     }
-                    let cutoff = 10i64.checked_pow(pattern_length).expect("invalid digits");
+                    let cutoff = 10i64.pow(pattern_length);
                     let initial = id % cutoff;
                     let mut leftover = id / cutoff;
                     let mut loop_finished = true;
