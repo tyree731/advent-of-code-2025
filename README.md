@@ -1,6 +1,6 @@
 # Advent of Code - 2025
 
-This project is tracking my progress on the 2023 Advent of Code challenge, with me going for a full rust implementation (learning the language as I go).
+This project is tracking my progress on the 2025 Advent of Code challenge, with me going for a full rust implementation (learning the language as I go).
 
 # Configuring
 
