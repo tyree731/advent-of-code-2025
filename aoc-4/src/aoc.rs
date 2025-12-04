@@ -52,9 +52,6 @@ pub fn aoc_4_2(lines: &Vec<String>) -> i32 {
             j = 0;
         }
     }
-    for mut i in 0..grid.len() {
-        for mut j in 0..grid[i].len() {}
-    }
     count
 }
 
@@ -120,6 +117,7 @@ fn parse_lines(lines: &Vec<String>) -> Vec<Vec<GridItem>> {
     result
 }
 
+#[cfg(test)]
 mod test {
     use super::*;
 

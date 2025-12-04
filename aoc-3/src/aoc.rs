@@ -79,6 +79,7 @@ fn parse_lines(lines: &Vec<String>) -> Vec<Vec<u64>> {
     result
 }
 
+#[cfg(test)]
 mod test {
     use super::*;
 
