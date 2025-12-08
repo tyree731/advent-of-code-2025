@@ -39,6 +39,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "aoc-6"
+version = "0.1.0"
+dependencies = [
+ "common",
+]
+
+[[package]]
 name = "common"
 version = "0.1.0"
 

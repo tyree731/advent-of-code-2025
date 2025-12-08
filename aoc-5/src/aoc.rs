@@ -134,7 +134,7 @@ mod tests {
             .lines()
             .map(|l| l.trim().to_string())
             .collect::<Vec<String>>();
-        let (ranges, inputs) = parse_lines(&lines).unwrap();
+        let (_ranges, inputs) = parse_lines(&lines).unwrap();
         assert_eq!(inputs, vec![1, 5, 8, 11, 17, 32]);
     }
 
@@ -157,7 +157,7 @@ mod tests {
             .lines()
             .map(|l| l.trim().to_string())
             .collect::<Vec<String>>();
-        let (ranges, inputs) = parse_lines(&lines).unwrap();
+        let (ranges, _inputs) = parse_lines(&lines).unwrap();
         let in_range = [5, 11, 17];
         let not_in_range = [1, 8, 32];
         for in_value in in_range {
